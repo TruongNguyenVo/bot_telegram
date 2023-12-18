@@ -288,52 +288,137 @@ token = "6529100020:AAG894nsmLa_vB6Igk-UvEPWnvlsycaz91Y"
 # updater.start_polling()
 
 #-----------------------------------------------------------
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
+# from telegram import InlineKeyboardButton, InlineKeyboardMarkup
+# from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
 
-# Define the function to handle the /start command
-def start(update, context):
-    keyboard = [
-        [InlineKeyboardButton("Option 1", callback_data='1')],
-        [InlineKeyboardButton("Option 2", callback_data='2')],
-        [InlineKeyboardButton("Option 3", callback_data='3')]
-    ]
-    reply_markup = InlineKeyboardMarkup(keyboard)
-    context.bot.send_message(chat_id=update.effective_chat.id, text='Please select an option:', reply_markup=reply_markup)
-    # Clear previous selected_option data
-    context.user_data.pop('selected_option', None)
+# # Define the function to handle the /start command
+# def start(update, context):
+#     keyboard = [
+#         [InlineKeyboardButton("Option 1", callback_data='1')],
+#         [InlineKeyboardButton("Option 2", callback_data='2')],
+#         [InlineKeyboardButton("Option 3", callback_data='3')]
+#     ]
+#     reply_markup = InlineKeyboardMarkup(keyboard)
+#     context.bot.send_message(chat_id=update.effective_chat.id, text='Please select an option:', reply_markup=reply_markup)
+#     # Clear previous selected_option data
+#     context.user_data.pop('selected_option', None)
 
-# Define the function to handle button presses
-def button(update, context):
-    query = update.callback_query
-    selected_option = query.data
-    query.answer()
+# # Define the function to handle button presses
+# def button(update, context):
+#     query = update.callback_query
+#     selected_option = query.data
+#     query.answer()
 
-    if selected_option == '1':
-        explanation_text = "This is an explanation for Option 1."
-        continue_button = InlineKeyboardButton("Continue", callback_data='continue')
-        reply_markup = InlineKeyboardMarkup([[continue_button]])
-        context.bot.send_message(chat_id=query.message.chat_id, text=explanation_text, reply_markup=reply_markup)
-        context.user_data['selected_option'] = '1'
-    elif selected_option == 'continue':
-        if 'selected_option' in context.user_data:
-            start(update, context)
-        else:
-            context.bot.send_message(chat_id=update.effective_chat.id, text='No option selected. Please select an option:')
-    else:
-        context.bot.send_message(chat_id=update.effective_chat.id, text=f"You selected option {selected_option}")
+#     if selected_option == '1':
+#         explanation_text = "This is an explanation for Option 1."
+#         continue_button = InlineKeyboardButton("Continue", callback_data='continue')
+#         reply_markup = InlineKeyboardMarkup([[continue_button]])
+#         context.bot.send_message(chat_id=query.message.chat_id, text=explanation_text, reply_markup=reply_markup)
+#         context.user_data['selected_option'] = '1'
+#     elif selected_option == 'continue':
+#         if 'selected_option' in context.user_data:
+#             start(update, context)
+#         else:
+#             context.bot.send_message(chat_id=update.effective_chat.id, text='No option selected. Please select an option:')
+#     else:
+#         context.bot.send_message(chat_id=update.effective_chat.id, text=f"You selected option {selected_option}")
 
-# Create an instance of the Updater and pass your bot token
-updater = Updater(token=token, use_context=True)
+# # Create an instance of the Updater and pass your bot token
+# updater = Updater(token=token, use_context=True)
 
-# Get the dispatcher to register handlers
-dispatcher = updater.dispatcher
+# # Get the dispatcher to register handlers
+# dispatcher = updater.dispatcher
 
-# Register the command handler
-dispatcher.add_handler(CommandHandler("start", start))
+# # Register the command handler
+# dispatcher.add_handler(CommandHandler("start", start))
 
-# Register the callback query handler
-dispatcher.add_handler(CallbackQueryHandler(button))
+# # Register the callback query handler
+# dispatcher.add_handler(CallbackQueryHandler(button))
 
-# Start the bot
-updater.start_polling()
+# # Start the bot
+# updater.start_polling()
+#-----------------------------------------------------------------
+# import telegram
+
+# print(telegram.__version__)
+#-------------------------------------------------------
+# import requests
+# import json
+# def main():
+# 	url = "https://jlpt-vocab-api.vercel.app//api/words/all"
+# 	response = requests.get(url).json()
+# 	# Open the file in write mode
+# 	file_path = "vocabulary.txt"  # Replace with the actual file path
+# 	file = open(file_path, "w",encoding="utf-8")
+
+
+# 	# Write content to the file
+# 	file.write(str(response))
+
+# 	# Close the file
+# 	file.close()
+# 	print("done")
+# main()
+#--------------------------------------------------
+# import pandas as pd
+# file_path = "vocabulary.txt"  # Replace with the actual file path
+# file = open(file_path, "r", encoding = 'utf-8')
+
+# # Read the contents of the file
+# content = file.read()
+
+# # Close the file
+# file.close()
+
+# # Print the file content
+# datas = eval(content)
+# words = []
+# meanings = []
+# characters = []
+# spellings = []
+# levels = []
+
+# for data in datas:
+# 	words.append(data['word'])
+# 	meanings.append(data['meaning'])
+# 	characters.append(data['furigana'])
+# 	spellings.append(data['romaji'])
+# 	levels.append(data['level'])
+
+
+# data = {
+#     "Words": words,
+#     "Meanings": meanings,
+#     "Characters": characters,
+#     "Spellings" : spellings,
+#     "Levels" : levels
+# }
+
+# # Create a DataFrame from the dictionary
+# df = pd.DataFrame(data)
+
+# # File path to save the CSV file
+# file_path = "vocabulary.csv"  # Replace with the actual file path
+
+# # Save the DataFrame as a CSV file
+# df.to_csv(file_path, index=False)
+
+# print("CSV file saved successfully.")
+#-----------------------------------------------------
+import pandas as pd
+
+# File path of the CSV file
+file_path = "vocabulary.csv"  # Replace with the actual file path
+
+# Read the CSV file into a DataFrame
+df = pd.read_csv(file_path)
+
+# Randomly select one row from the DataFrame
+random_row = df.sample(n=1)
+
+
+
+# Print the randomly selected row
+text = random_row["Meanings"].to_string(index=False)
+print(text)
+

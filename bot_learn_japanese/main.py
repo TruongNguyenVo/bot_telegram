@@ -2,15 +2,22 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import Updater, CommandHandler, CallbackQueryHandler
 import requests, json
 import random
+import pandas as pd
+import sys
 def get_vocabulary():
-    url = "https://jlpt-vocab-api.vercel.app/api/words/random"
-    response = requests.get(url).json()
+    file_path = "vocabulary.csv"  # Replace with the actual file path
+    df = pd.read_csv(file_path)
+
+    # Randomly select one row from the DataFrame
+    random_row = df.sample(n=1)
+
+    # Print the randomly selected row
     return {
-    'word' : response['word'],
-    'meaning' : response['meaning'],
-    'character' : response['furigana'],
-    'spelling' : response['romaji'],
-    'level' : response['level']
+    'word' : random_row["Words"].to_string(index=False),
+    'meaning' :  random_row["Meanings"].to_string(index=False),
+    'character' : random_row["Characters"].to_string(index=False),
+    'spelling' : random_row["Spellings"].to_string(index=False),
+    'level' : random_row["Levels"].to_string(index=False)
     }
 
 def quiz_bot(update, context):
@@ -93,6 +100,7 @@ def end_bot(update, context):
     context.bot.send_message(chat_id=update.effective_chat.id, text="Goodbye, my boss!")
     global updater
     updater.stop()
+    sys.exit() #stop script
 
 def main():
 
