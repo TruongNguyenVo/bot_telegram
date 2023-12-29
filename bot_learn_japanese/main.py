@@ -6,7 +6,7 @@ import pandas as pd
 import sys
 def get_vocabulary():
     file_path = "vocabulary.csv"  # Replace with the actual file path
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(file_path)[pd.read_csv(file_path)['Levels'] == 5]
 
     # Randomly select one row from the DataFrame
     random_row = df.sample(n=1)

@@ -411,7 +411,7 @@ import pandas as pd
 file_path = "vocabulary.csv"  # Replace with the actual file path
 
 # Read the CSV file into a DataFrame
-df = pd.read_csv(file_path)
+df = pd.read_csv(file_path)[pd.read_csv(file_path)['Levels'] == 5]
 
 # Randomly select one row from the DataFrame
 random_row = df.sample(n=1)
@@ -419,6 +419,6 @@ random_row = df.sample(n=1)
 
 
 # Print the randomly selected row
-text = random_row["Meanings"].to_string(index=False)
+text = random_row
 print(text)
 
