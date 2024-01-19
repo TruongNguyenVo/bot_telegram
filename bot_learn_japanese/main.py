@@ -4,6 +4,8 @@ import requests, json
 import random
 import pandas as pd
 import sys
+pd.set_option('display.max_colwidth', None)
+pd.set_option('display.max_columns', None)
 def get_vocabulary():
     file_path = "vocabulary.csv"  # Replace with the actual file path
     df = pd.read_csv(file_path)[pd.read_csv(file_path)['Levels'] == 5]

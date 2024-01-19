@@ -405,20 +405,20 @@ token = "6529100020:AAG894nsmLa_vB6Igk-UvEPWnvlsycaz91Y"
 
 # print("CSV file saved successfully.")
 #-----------------------------------------------------
-import pandas as pd
+# import pandas as pd
 
-# File path of the CSV file
-file_path = "vocabulary.csv"  # Replace with the actual file path
+# # File path of the CSV file
+# file_path = "vocabulary.csv"  # Replace with the actual file path
 
-# Read the CSV file into a DataFrame
-df = pd.read_csv(file_path)[pd.read_csv(file_path)['Levels'] == 5]
+# # Read the CSV file into a DataFrame
+# df = pd.read_csv(file_path)[pd.read_csv(file_path)['Levels'] == 5]
 
-# Randomly select one row from the DataFrame
-random_row = df.sample(n=1)
+# # Randomly select one row from the DataFrame
+# random_row = df.sample(n=1)
 
 
 
-# Print the randomly selected row
-text = random_row
-print(text)
-
+# # Print the randomly selected row
+# text = random_row
+# print(text)
+# ----------------------------------------
