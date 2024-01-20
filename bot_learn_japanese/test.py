@@ -422,3 +422,13 @@ token = "6529100020:AAG894nsmLa_vB6Igk-UvEPWnvlsycaz91Y"
 # text = random_row
 # print(text)
 # ----------------------------------------
+import models
+# print(models.get_vocabulary())
+quiz = models.jlpt_n5_vocabulary()
+print(quiz['question'])
+print(quiz['right_answer'])
+print(quiz['answer_1'])
+print(quiz['answer_2'])
+print(quiz['answer_3'])
+print(quiz['explain'])
+print(quiz['meaning'])
